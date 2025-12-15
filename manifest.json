@@ -1,0 +1,22 @@
+{
+    "name": "JL Graphic - Diseño Gráfico Profesional",
+    "short_name": "JL Graphic",
+    "description": "Diseño gráfico profesional y creativo. Marca, digital, impreso y más.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#1f0a3d",
+    "theme_color": "#6d28d9",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
