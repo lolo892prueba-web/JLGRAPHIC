@@ -1,122 +1,255 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JL Graphic | Diseño Gráfico Profesional</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700;900&display=swap" rel="stylesheet">
-
-    <!-- PWA Meta Tags -->
-    <meta name="theme-color" content="#6d28d9">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="JL Graphic">
-    <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="icon-192.png">
+  <meta charset="UTF-8">
+  <title>JL Graphic | Diseño Gráfico Profesional</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="JL Graphic - Diseño gráfico profesional en República Dominicana. Logos, branding, tarjetas de presentación y más.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 
-    <header class="main-header">
-        <h1>JL GRAPHIC</h1>
-        <p>Diseño Gráfico Profesional & Creativo</p>
-    </header>
+  <!-- PARTÍCULAS DE FONDO -->
+  <div class="particles" id="particles"></div>
 
-    <main>
-        <section class="services-panel">
-            <h2>Nuestros Servicios</h2>
-            <div class="stripe-divider"></div>
-            <div class="service-cards">
-                <div class="card">
-                    <i class="fas fa-image card-icon"></i>
-                    <h3>Diseño de Marca</h3>
-                    <p>Logos, identidad visual, paletas de color y branding completo.</p>
-                </div>
-                <div class="card">
-                    <i class="fas fa-layout card-icon"></i>
-                    <h3>Diseño Digital</h3>
-                    <p>Interfaces web, mockups, banners y diseño de redes sociales.</p>
-                </div>
-                <div class="card">
-                    <i class="fas fa-print card-icon"></i>
-                    <h3>Diseño Impreso</h3>
-                    <p>Folletos, tarjetas, catálogos y materiales promocionales de alta calidad.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="portfolio-panel">
-            <h2>Nuestros Trabajos</h2>
-            <div class="stripe-divider"></div>
-            <div id="portfolio-container" class="portfolio-grid">
-                <!-- Los trabajos se cargarán aquí desde Firestore -->
-                <p class="no-works">Cargando trabajos...</p>
-            </div>
-        </section>
-
-        <section class="booking-panel">
-            <div class="booking-container">
-                <div class="booking-info">
-                    <h2>Solicita un Proyecto</h2>
-                    <div class="stripe-divider left"></div>
-                    <p>Cuéntanos sobre tu proyecto y nos pondremos en contacto a la brevedad para discutir tus ideas. ¡Transformemos tu visión en realidad!</p>
-                    <div class="direct-contact">
-                        <h4>O contáctanos directamente:</h4>
-                        <p><i class="fab fa-whatsapp"></i> WhatsApp: <strong>+1 (XXX) XXX-XXXX</strong></p>
-                        <p><i class="fas fa-map-marker-alt"></i> Ubicación: <strong>Moca, República Dominicana</strong></p>
-                    </div>
-                </div>
-                <form id="booking-form">
-                    <div class="form-group">
-                        <label for="name">Nombre Completo:</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Correo Electrónico:</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="company">Nombre de tu Empresa:</label>
-                        <input type="text" id="company" name="company">
-                    </div>
-                    <div class="form-group">
-                        <label for="service">Tipo de Diseño:</label>
-                        <select id="service" name="service">
-                            <option value="">Selecciona un servicio</option>
-                            <option value="branding">Diseño de Marca</option>
-                            <option value="digital">Diseño Digital</option>
-                            <option value="print">Diseño Impreso</option>
-                            <option value="other">Otro</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="description">Describe tu Proyecto:</label>
-                        <textarea id="description" name="description" rows="4" placeholder="Cuéntanos sobre tus necesidades y ideas..." required></textarea>
-                    </div>
-                    <button type="submit" class="cta-button">Enviar Solicitud</button>
-                </form>
-            </div>
-        </section>
-    </main>
-
-    <!-- Botón Flotante de WhatsApp -->
-    <a href="https://wa.me/+1XXXXXXXXXX" class="whatsapp-float" target="_blank" data-tooltip="Contactar por WhatsApp">
-        <i class="fab fa-whatsapp"></i>
+  <!-- HEADER -->
+  <header class="topbar">
+    <a href="#inicio" class="logo">
+      <img src="img/JL.JPEG.jpeg" alt="JL Graphic Logo" class="logo-img">
+      <span class="logo-text">JLGRAPHIC</span>
     </a>
+    <nav id="nav-menu">
+      <a href="#inicio" class="nav-link">Inicio</a>
+      <a href="#servicios" class="nav-link">Servicios</a>
+      <a href="#proyectos" class="nav-link">Portafolio</a>
+      <a href="#contacto" class="nav-link">Contacto</a>
+    </nav>
+    <div id="hamburger" class="hamburger">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+  </header>
 
-    <footer class="main-footer">
-        <p>JL GRAPHIC | Diseño Profesional | Moca, República Dominicana</p>
-        <p>&copy; 2024 JL GRAPHIC. Todos los derechos reservados.</p>
-    </footer>
+  <!-- HERO -->
+  <section id="inicio" class="hero">
+    <div class="hero-container">
+      <div class="hero-text">
+        <h1>
+          <span class="word">DISEÑO</span>
+          <span class="word">QUE</span>
+          <span class="highlight">IMPACTA</span>
+          <span class="word">Y TRANSFORMA</span>
+        </h1>
+        <p>Creo identidades visuales únicas que conectan con tu audiencia y elevan tu marca al siguiente nivel. Logos, branding y diseños que dejan huella.</p>
+        <div class="cta-buttons">
+          <a href="#proyectos" class="btn btn-primary">
+            <i class="fas fa-rocket"></i>
+            Ver Trabajos
+          </a>
+          <a href="#contacto" class="btn btn-secondary">
+            <i class="fas fa-envelope"></i>
+            Contactar
+          </a>
+        </div>
+      </div>
+      <div class="hero-showcase">
+        <div class="showcase-item">
+          <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800" alt="Diseño 1">
+          <div class="showcase-overlay">
+            <i class="fas fa-search-plus"></i>
+          </div>
+        </div>
+        <div class="showcase-item">
+          <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=500" alt="Diseño 2">
+          <div class="showcase-overlay">
+            <i class="fas fa-search-plus"></i>
+          </div>
+        </div>
+        <div class="showcase-item">
+          <img src="https://images.unsplash.com/photo-1609921212029-bb5a28e60960?w=500" alt="Diseño 3">
+          <div class="showcase-overlay">
+            <i class="fas fa-search-plus"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Firebase SDK (colócalo antes de tu propio script.js) -->
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-    <!-- Agrega otros servicios de Firebase que necesites, como Auth, Storage, etc. -->
-    <script src="script.js"></script> <!-- Tu archivo JavaScript para la lógica de la aplicación -->
+  <!-- SERVICIOS -->
+  <section id="servicios" class="servicios">
+    <div class="section-header">
+      <h2>MIS SERVICIOS</h2>
+      <p>Soluciones de diseño profesional para potenciar tu marca</p>
+    </div>
+    <div class="servicios-grid">
+      <div class="servicio">
+        <div class="servicio-icon">
+          <i class="fas fa-pen-nib"></i>
+        </div>
+        <h3>Diseño de Logos</h3>
+        <p>Identidad visual única y memorable que representa la esencia de tu marca</p>
+      </div>
+      <div class="servicio">
+        <div class="servicio-icon">
+          <i class="fas fa-address-card"></i>
+        </div>
+        <h3>Tarjetas de Presentación</h3>
+        <p>Diseños profesionales que causan una primera impresión inolvidable</p>
+      </div>
+      <div class="servicio">
+        <div class="servicio-icon">
+          <i class="fas fa-file-alt"></i>
+        </div>
+        <h3>Flyers y Folletos</h3>
+        <p>Material promocional efectivo que comunica tu mensaje claramente</p>
+      </div>
+      <div class="servicio">
+        <div class="servicio-icon">
+          <i class="fas fa-palette"></i>
+        </div>
+        <h3>Branding Completo</h3>
+        <p>Estrategia visual integral para construir una marca sólida y coherente</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTAFOLIO -->
+  <section id="proyectos" class="proyectos">
+    <div class="section-header">
+      <h2>MI PORTAFOLIO</h2>
+      <p>Proyectos que demuestran pasión por el diseño y atención al detalle</p>
+    </div>
+    <div class="portfolio-grid">
+      <div class="portfolio-item">
+        <img src="img/TARJETAS.JPEG.jpeg" alt="Diseño de Tarjetas de Presentación">
+        <div class="portfolio-overlay">
+          <i class="fas fa-plus-circle"></i>
+          <h3>Tarjetas de Presentación</h3>
+          <p>Diseño Profesional</p>
+        </div>
+      </div>
+    <div class="portfolio-item">
+        <!-- Para videos, crea una carpeta 'www/videos/' y ponlos ahí -->
+        <video src="img/boomerang1.mp4" autoplay loop muted playsinline></video>
+        <div class="portfolio-overlay">
+          <i class="fas fa-play-circle"></i>
+          <h3>Motion Graphics</h3>
+          <p>Animación de Marca</p>
+        </div>
+      </div>
+  
+      <div class="portfolio-item">
+        <!-- Para videos, crea una carpeta 'www/videos/' y ponlos ahí -->
+        <video src="img/boomerang2.mp4" autoplay loop muted playsinline></video>
+        <div class="portfolio-overlay">
+          <i class="fas fa-play-circle"></i>
+          <h3>Motion Graphics</h3>
+          <p>Animación de Marca</p>
+        </div>
+      </div>
+      <div class="portfolio-item">
+        <!-- Para videos, crea una carpeta 'www/videos/' y ponlos ahí -->
+        <video src="img/boomerang3.mp4" autoplay loop muted playsinline></video>
+        <div class="portfolio-overlay">
+          <i class="fas fa-play-circle"></i>
+          <h3>Motion Graphics</h3>
+          <p>Animación de Marca</p>
+        </div>
+      </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto" class="contacto">
+    <div class="contacto-left">
+      <h3>¿Listo para Empezar?</h3>
+      <p>Cuéntame sobre tu proyecto y trabajemos juntos para hacer realidad tu visión. Transformemos tu marca con diseño de alto impacto.</p>
+      <div class="contact-info">
+        <div class="contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <div>
+            <strong>Ubicación</strong>
+            <p>República Dominicana</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-phone"></i>
+          <div>
+            <strong>Teléfono</strong>
+            <p>849-436-2242</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-instagram"></i>
+          <div>
+            <strong>Instagram</strong>
+            <p>@jl_graphic1420</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contacto-form">
+      <h3>SOLICITA TU PROYECTO</h3>
+      <div class="form-group">
+        <input id="name" type="text" placeholder="Tu Nombre *" required>
+      </div>
+      <div class="form-group">
+        <input id="email" type="email" placeholder="Tu Correo Electrónico *" required>
+      </div>
+      <div class="form-group">
+        <input id="company" type="text" placeholder="Nombre de tu Empresa (Opcional)">
+      </div>
+      <div class="form-group">
+        <select id="service" required>
+          <option value="" disabled selected>Selecciona un servicio...</option>
+          <option value="Logo">Diseño de Logo</option>
+          <option value="Tarjeta">Tarjeta de Presentación</option>
+          <option value="Flyer">Flyer / Folleto</option>
+          <option value="Branding">Branding Completo</option>
+          <option value="Otro">Otro</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <textarea id="description" placeholder="Cuéntame sobre tu proyecto... *" required></textarea>
+      </div>
+      <button id="send-whatsapp" class="submit-btn">
+        <i class="fab fa-whatsapp"></i>
+        Enviar por WhatsApp
+      </button>
+    </div>
+  </section>
+
+  <!-- REDES SOCIALES -->
+  <section class="social-media">
+    <div class="section-header">
+      <h2>SÍGUEME</h2>
+      <p>Conecta conmigo en redes sociales</p>
+    </div>
+    <div class="social-icons">
+      <a href="https://instagram.com/jl_graphic1420" target="_blank" class="social-icon" aria-label="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://wa.me/18494362242" target="_blank" class="social-icon" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+      <a class="social-icon disabled" aria-label="Facebook (Próximamente)">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p><strong>© 2025 JLGRAPHIC</strong></p>
+    <p>Tu Idea En Fuego · Todos los derechos reservados</p>
+  </footer>
+
+  <script src="script.js"></script>
+
 </body>
 </html>

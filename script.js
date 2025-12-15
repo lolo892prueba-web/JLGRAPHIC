@@ -1,139 +1,112 @@
-// Registrar Service Worker para PWA
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-            .then((registration) => {
-                console.log('Service Worker registrado con éxito:', registration);
-            })
-            .catch((error) => {
-                console.log('Error al registrar Service Worker:', error);
-            });
-    });
+// ==========================================
+// JL GRAPHIC - SCRIPT.JS
+// ==========================================
+
+// CREAR PARTÍCULAS DE FONDO
+const particlesContainer = document.getElementById('particles');
+for (let i = 0; i < 50; i++) {
+  const particle = document.createElement('div');
+  particle.className = 'particle';
+  particle.style.left = Math.random() * 100 + '%';
+  particle.style.top = Math.random() * 100 + '%';
+  particle.style.animationDelay = Math.random() * 20 + 's';
+  particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+  particlesContainer.appendChild(particle);
 }
 
-// Configuración de Firebase (reemplaza con tus credenciales reales desde Firebase Console)
-const firebaseConfig = {
-    apiKey: "TU_API_KEY_AQUI",
-    authDomain: "TU_PROYECTO.firebaseapp.com",
-    projectId: "TU_PROYECTO_ID",
-    storageBucket: "TU_PROYECTO.appspot.com",
-    messagingSenderId: "TU_SENDER_ID",
-    appId: "TU_APP_ID"
-};
+// MENÚ HAMBURGUESA
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('nav-menu');
 
-// Inicializar Firebase
-const app = firebase.initializeApp(firebaseConfig);
-
-// Inicializar Firestore
-const db = firebase.firestore();
-
-function validateForm() {
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const service = document.getElementById('service').value;
-    const description = document.getElementById('description').value.trim();
-
-    if (!name) {
-        alert('Por favor, ingresa tu nombre completo.');
-        return false;
-    }
-    if (!email || !/\S+@\S+\.\S+/.test(email)) {
-        alert('Por favor, ingresa un correo electrónico válido.');
-        return false;
-    }
-    if (!service) {
-        alert('Por favor, selecciona un tipo de diseño.');
-        return false;
-    }
-    if (!description) {
-        alert('Por favor, describe tu proyecto.');
-        return false;
-    }
-    return true;
-}
-
-// Referencia al formulario
-const bookingForm = document.getElementById('booking-form');
-
-// Event listener para el envío del formulario
-bookingForm.addEventListener('submit', async (e) => {
-    e.preventDefault(); // Prevenir el envío por defecto
-
-    // Validar formulario
-    if (!validateForm()) return;
-
-    // Mostrar loading
-    const submitButton = document.querySelector('.cta-button');
-    const originalText = submitButton.textContent;
-    submitButton.innerHTML = '<div class="spinner"></div>Enviando...';
-    submitButton.disabled = true;
-
-    const formData = {
-        name: document.getElementById('name').value.trim(),
-        email: document.getElementById('email').value.trim(),
-        company: document.getElementById('company').value.trim(),
-        service: document.getElementById('service').value,
-        description: document.getElementById('description').value.trim(),
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
-    };
-
-    try {
-        await db.collection('proyectos').add(formData);
-        alert('¡Solicitud de proyecto enviada exitosamente! Nos pondremos en contacto pronto.');
-        bookingForm.reset();
-    } catch (error) {
-        console.error('Error al enviar la solicitud:', error);
-        alert('Hubo un error al enviar la solicitud. Inténtalo de nuevo.');
-    } finally {
-        submitButton.innerHTML = originalText;
-        submitButton.disabled = false;
-    }
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navMenu.classList.toggle('active');
 });
 
-async function loadPortfolio() {
-    const portfolioContainer = document.getElementById('portfolio-container');
-    
-    try {
-        const querySnapshot = await db.collection('trabajos')
-            .orderBy('orden', 'asc')
-            .get();
-        
-        if (querySnapshot.empty) {
-            portfolioContainer.innerHTML = '<p class="no-works">No hay trabajos cargados aún. Vuelve pronto para ver nuestros proyectos destacados.</p>';
-            return;
-        }
+// CERRAR MENÚ AL HACER CLIC EN ENLACE
+document.querySelectorAll('.nav-link').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    navMenu.classList.remove('active');
+  });
+});
 
-        portfolioContainer.innerHTML = '';
-        
-        querySnapshot.forEach((doc) => {
-            const data = doc.data();
-            const portfolioItem = document.createElement('div');
-            portfolioItem.className = 'portfolio-item';
-            
-            let imageHTML = '';
-            if (data.imagen) {
-                imageHTML = `<img src="${data.imagen}" alt="${data.titulo}">`;
-            } else {
-                imageHTML = '<i class="fas fa-image" style="font-size: 4rem; color: #fff;"></i>';
-            }
+// HEADER EFECTO SCROLL
+window.addEventListener('scroll', () => {
+  const topbar = document.querySelector('.topbar');
+  if (window.scrollY > 100) {
+    topbar.classList.add('scrolled');
+  } else {
+    topbar.classList.remove('scrolled');
+  }
+});
 
-            portfolioItem.innerHTML = `
-                <div class="portfolio-image">
-                    ${imageHTML}
-                </div>
-                <div class="portfolio-info">
-                    <span class="portfolio-category">${data.categoria || 'Diseño'}</span>
-                    <h3>${data.titulo}</h3>
-                    <p>${data.descripcion || ''}</p>
-                </div>
-            `;
-            
-            portfolioContainer.appendChild(portfolioItem);
-        });
-    } catch (error) {
-        console.error('Error al cargar el portafolio:', error);
-        portfolioContainer.innerHTML = '<p class="no-works">Error al cargar los trabajos. Intenta de nuevo más tarde.</p>';
+// SCROLL SUAVE
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
     }
-}
+  });
+});
 
-loadPortfolio();
+// ENVIAR MENSAJE POR WHATSAPP
+document.getElementById('send-whatsapp').addEventListener('click', () => {
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const company = document.getElementById('company').value;
+  const service = document.getElementById('service').value;
+  const description = document.getElementById('description').value;
+
+  // VALIDACIÓN
+  if (!name || !email || !service || !description) {
+    alert('Por favor completa todos los campos requeridos (*)');
+    return;
+  }
+
+  // VALIDAR EMAIL
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    alert('Por favor ingresa un correo electrónico válido');
+    return;
+  }
+
+  // CREAR MENSAJE PARA WHATSAPP
+  const mensaje = `🎨 *NUEVA SOLICITUD DE PROYECTO*%0A%0A` +
+                 `👤 *Nombre:* ${name}%0A` +
+                 `📧 *Email:* ${email}%0A` +
+                 `🏢 *Empresa:* ${company || 'N/A'}%0A` +
+                 `🎯 *Servicio:* ${service}%0A%0A` +
+                 `📝 *Descripción del proyecto:*%0A${description}`;
+
+  // ABRIR WHATSAPP
+  window.open(`https://wa.me/18494362242?text=${mensaje}`, '_blank');
+});
+
+// ANIMACIONES AL HACER SCROLL (OPCIONAL)
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -100px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, observerOptions);
+
+// OBSERVAR ELEMENTOS PARA ANIMACIÓN
+document.querySelectorAll('.servicio, .portfolio-item').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(30px)';
+  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  observer.observe(el);
+});

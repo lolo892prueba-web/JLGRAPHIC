@@ -1,11 +1,11 @@
 {
-    "name": "JL Graphic - Diseño Gráfico Profesional",
-    "short_name": "JL Graphic",
-    "description": "Diseño gráfico profesional y creativo. Marca, digital, impreso y más.",
+    "name": "JLGRAPHIC - Diseño Profesional",
+    "short_name": "JLGRAPHIC",
+    "description": "Diseño gráfico profesional. Logos, branding, diseño digital e impreso en Moca, República Dominicana.",
     "start_url": "/",
     "display": "standalone",
-    "background_color": "#1f0a3d",
-    "theme_color": "#6d28d9",
+    "background_color": "#000000",
+    "theme_color": "#ff0000",
     "orientation": "portrait-primary",
     "icons": [
         {
